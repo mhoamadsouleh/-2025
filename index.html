@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Python Web Runner</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin: 2em; }
+        input[type="file"] { margin-top: 1em; }
+        .file-list { margin-top: 2em; }
+        button { margin: 0.2em; padding: 0.5em 1em; }
+    </style>
+</head>
+<body>
+    <h1>ارفع ملفك بايثون</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".py" required>
+        <button type="submit">رفع ملف</button>
+    </form>
+
+    <div class="file-list">
+        <h2>الملفات المرفوعة</h2>
+        {% for file in files %}
+        <div>
+            <strong>{{ file }}</strong><br>
+            <a href="/run/{{ file }}"><button>تشغيل</button></a>
+            <a href="/stop/{{ file }}"><button>إيقاف</button></a>
+            <a href="/delete/{{ file }}"><button>حذف</button></a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
